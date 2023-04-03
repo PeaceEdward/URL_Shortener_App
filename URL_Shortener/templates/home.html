@@ -1,0 +1,25 @@
+{%extends 'layout.html'%} {% block title%} Home {%endblock%} {%block styles%}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='mystyle.css')}}" />
+{%endblock%} {%block body%}
+<form action="/" method="post">
+  <input
+    type="url"
+    name="url_address"
+    id="url_address"
+    placeholder="Enter your url"
+  />
+  <label for="url">URL:</label>
+  <input type="submit" value="Shorten" />
+</form>
+<div>
+  {% if short_url %}
+  <p>
+    Shortened URL:
+    <a href="{{ url_for('redirect_url', short_url=short_url) }}"
+      >{{ short_url }}</a
+    >
+  </p>
+  {% endif %}
+</div>
+{%endblock%}
